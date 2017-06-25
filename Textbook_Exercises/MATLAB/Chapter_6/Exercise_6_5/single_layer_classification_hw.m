@@ -27,7 +27,15 @@ end
 
 %%% gradient descent for single layer tanh nn %%%
 function [b,w,c,V] = tanh_softmax(X,y,M)
-    
+
+ % initializations
+    [N,P] = size(X);   
+    b = randn(1);
+    w = randn(M,1);
+    c = randn(M,1);
+    V = randn(N,M);
+    l_P = ones(P,1);
+        
     % stoppers
     max_its = 10000;
     grad = 1;
