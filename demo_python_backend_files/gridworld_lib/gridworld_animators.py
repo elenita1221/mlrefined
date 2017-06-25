@@ -4,6 +4,9 @@ import matplotlib.animation as animation
 from JSAnimation import IPython_display
 import time
 from IPython.display import clear_output
+from matplotlib.colors import LinearSegmentedColormap
+import matplotlib.patches as patches
+from mpl_toolkits.mplot3d import Axes3D
 
 class animator():
         
@@ -248,3 +251,185 @@ class animator():
         clear_output()
         
         return(anim)
+
+    ### draw arrow map after training ###
+    ### setup arrows
+    def add_arrows(self,ax,state,action):
+        x = state[1]
+        y = state[0]
+        dx = 0
+        dy = 0
+
+        ### switch for starting point of arrow depending on action - so that arrow always centered ###
+        if action == 0:    # action == down
+            y += 0.9
+            x += 0.5
+            dy = -0.8
+        if action == 1:    # action == up
+            x += 0.5
+            y += 0.1
+            dy = 0.8
+        if action == 2:    # action == left
+            y += 0.5
+            x += 0.9
+            dx = -0.8
+        if action == 3:    # action == right
+            y += 0.5
+            x += 0.1
+            dx = 0.8
+
+        ### add patch with location / orientation determined by action ###
+        ax.add_patch(
+           patches.FancyArrowPatch(
+           (x, y),
+           (x+dx, y+dy),
+           arrowstyle='->',
+           mutation_scale=30,
+           lw=2
+           )
+        )
+
+    # best action map
+    def draw_arrow_map(self,world,learner):  
+        ### ready state and optimal action lists ###
+        # process states for scatter plotting
+        states = world.states 
+
+        # process states for scatter plotting
+        plot_ready_states = np.zeros((len(states),2))
+        for i in range(len(states)):
+            a = states[i]
+            b = a.split(',')
+            state = [int(b[0])]
+            state.append(int(b[1]))
+            plot_ready_states[i,0] = state[0]
+            plot_ready_states[i,1] = state[1]
+
+        ### compute optimal directions ###
+        Q = learner.Q
+        q_max = np.zeros((len(Q[:,0]),1))
+        q_dir = np.zeros((len(Q[:,0]),1))
+        for i in range(len(Q[:,0])):
+            max_ind = np.argmax(Q[i,:])
+            q_dir[i] = max_ind
+            max_val = Q[i,max_ind]
+            q_max[i] = max_val
+        q_dir = q_dir.tolist()
+        q_dir = [int(s[0]) for s in q_dir]
+
+        ### plot arrow map ###
+        colors = [(0.9,0.9,0.9),(255/float(255), 119/float(255), 119/float(255)), (66/float(255),244/float(255),131/float(255)), (1/float(255),100/float(255),200/float(255)),(0,0,0)]  
+        my_cmap = LinearSegmentedColormap.from_list('colormapX', colors, N=100)
+
+        ### setup grid
+        p_grid = world.grid
+        p_grid[world.goal[0]][world.goal[1]] = 2   
+        
+        ### setup figrue
+        ### setup figure ###
+        fig = plt.figure(num=None, figsize = (6,6), dpi=80, facecolor='w', edgecolor='k')
+
+        # plot regression surface 
+        ax = plt.subplot(111)
+        ax.pcolormesh(p_grid,edgecolors = 'k',linewidth = 0.01,vmin=0,vmax=4,cmap = my_cmap)
+
+        # clean up plot
+        ax.set_xlim(-0.1,world.width);
+        ax.set_ylim(-0.1,world.height); 
+
+        ### go over states and draw arrows indicating best action
+        # for i in range(len(states)):
+        for i in range(len(q_dir)):
+            state = plot_ready_states[i]
+            if state[0] != world.goal[0] or state[1] != world.goal[1]:  
+                action = q_dir[i]
+                self.add_arrows(ax,state,action)
+    
+    ### plot Q functions in 3d ###
+    def show_Qfunc_in_3d(self,world,learner):
+        # process states for scatter plotting
+        states = world.states 
+        plot_ready_states = np.zeros((len(states),2))
+        for i in range(len(states)):
+            a = states[i]
+            b = a.split(',')
+            state = [int(b[0])]
+            state.append(int(b[1]))
+            plot_ready_states[i,0] = state[0]
+            plot_ready_states[i,1] = state[1]
+        
+        ### plot q functions ###
+        # build figure for Q functions
+        Q = learner.Q
+        labels = ['down','up','left','right']
+        colors = ['r','g','b','k']
+        fig = plt.figure(num=None, figsize = (10,3), dpi=80, facecolor='w', edgecolor='k')
+
+        ### create figure ###
+        for m in range(4):
+            # make panel for plotting in 3d
+            ax1 = plt.subplot(1,4,m+1,projection = '3d')
+
+            # scatter plot
+            ax1.scatter(plot_ready_states[:,0],plot_ready_states[:,1],Q[:,m],c = colors[m])
+
+            # clean up plot
+            ax1.view_init(10,20)  
+            ax1.set_title('$Q_'+str(m+1) + '$' + ' (' + labels[m] + ')',fontsize = 18)
+
+        fig.subplots_adjust(left=0,right=1,bottom=0,top=1)   # remove whitespace around 3d figure
+        plt.show()
+     
+    ### plot the optimal policy in 3d ###
+    def show_optimal_policy_in_3d(self,world,learner):
+        # process states for scatter plotting
+        states = world.states 
+        plot_ready_states = np.zeros((len(states),2))
+        for i in range(len(states)):
+            a = states[i]
+            b = a.split(',')
+            state = [int(b[0])]
+            state.append(int(b[1]))
+            plot_ready_states[i,0] = state[0]
+            plot_ready_states[i,1] = state[1]
+        
+        # compute optimal policy
+        Q = learner.Q
+        q_max = np.zeros((len(Q[:,0]),1))
+        q_dir = np.zeros((len(Q[:,0]),1))
+        for i in range(len(Q[:,0])):
+            max_ind = np.argmax(Q[i,:])
+            q_dir[i] = max_ind
+            max_val = Q[i,max_ind]
+            q_max[i] = max_val
+
+        q_dir = q_dir.tolist()
+        q_dir = [int(s[0]) for s in q_dir]
+
+        #### build optimal policy ####
+        # build figure for optimal policy function
+        labels = ['down','up','left','right']
+        colors = ['r','g','b','k']
+        fig = plt.figure(num=None, figsize = (5,5), dpi=80, facecolor='w', edgecolor='k')
+       
+        ### make panel for plotting in 3d
+        ax = plt.subplot(1,1,1,projection = '3d')
+        
+        # scatter plot
+        for i in range(len(plot_ready_states)):
+            ax.scatter(plot_ready_states[i,0],plot_ready_states[i,1],q_max[i],c =colors[q_dir[i]])
+
+        # clean up plot
+        ax.view_init(40,0)  
+        ax.set_title('optimal policy',fontsize = 18)
+        ax.legend(labels,loc='center right', bbox_to_anchor=(1, 0.5))
+        leg = ax.get_legend()
+
+        for i in range(4):
+            leg.legendHandles[i].set_color(colors[i])
+
+        fig.subplots_adjust(left=0,right=1,bottom=0,top=1)   # remove whitespace around 3d figure
+        
+        ### plot arrow map
+        self.draw_arrow_map(world = world,learner = learner)
+        plt.show()

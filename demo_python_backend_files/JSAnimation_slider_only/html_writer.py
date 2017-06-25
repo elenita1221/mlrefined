@@ -182,7 +182,7 @@ DISPLAY_TEMPLATE = """
 <div class="animation" align="center">
     <img id="_anim_img{id}">
     <br>
-    <input id="_anim_slider{id}" type="range" style="width:350px" name="points" min="0" max="1" step="1" value="0" onchange="anim{id}.set_frame(parseInt(this.value));"></input>
+    <input id="_anim_slider{id}" type="range" style="width:350px" name="points" min="0" max="1" step="1" value="0" oninput="anim{id}.set_frame(parseInt(this.value));"></input>
     <br>
 
 </div>
