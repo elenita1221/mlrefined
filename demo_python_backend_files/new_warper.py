@@ -154,6 +154,7 @@ class warp_demo:
         grid1 = self.grid
         self.plot_grid(grid1,ax1)
         ax1.axis('off')
+        plt.show()
         
     # create the figure 
     def show_before_and_after(self):
@@ -204,6 +205,7 @@ class warp_demo:
         ax2.set_xlim([min(T[:,0])-hgap,max(T[:,0])+hgap])
         ax2.set_ylim([min(T[:,1])-vgap,max(T[:,1])+vgap])
         ax2.axis('off')
+        plt.show()
         
     # plot current separator
     def plot_separator(self,x,y,z,ax):
@@ -326,7 +328,7 @@ class warp_demo:
         # pre-compute all contours
         contours = []
         alphas = np.linspace(0,1,751)
-        print 'computing separator contours...'
+        print ('computing separator contours...')
         for alpha in alphas:
             sep1 = (1-alpha)*a + alpha*f1
             sep2 = (1-alpha)*b + alpha*f2
@@ -341,7 +343,7 @@ class warp_demo:
            
             contours.append(cont)
             
-        print '...done!'
+        print ('...done!')
         time.sleep(1)
         clear_output()
         #os.system('clear')
