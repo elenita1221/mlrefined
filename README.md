@@ -9,8 +9,9 @@ This repository contains various supplementary Jupyter notebooks, Python and MAT
 
 Below are links to a video walkthroughs for several of the Jupyter notebooks in this repository.  These briefly discuss the content of each notebook and show off their various interactive demos.  **Click the gif below each description to link directly to the corresponding walkthrough.**
 
-Note: Sometimes Jupyter's default iopub rate limits are too low especially for notebooks with a lot of visualizations. It is therefore advised that you set the iopub rate to a large value before running jupyter, e.g., 
-```jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000```
+Note: Sometimes Jupyter's default iopub rate limits are too low especially for notebooks with a lot of visualizations. It is therefore advised that you set the iopub rate to a large value before running jupyter, e.g.,
+
+```$ jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000000```
 
 
 ### An introduction to the mlrefined repo and the Jupyter notebook walkthrough series
