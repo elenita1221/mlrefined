@@ -89,7 +89,7 @@ class environment():
             self.goal = [0,self.width-1]     # goal block
 
         ### load in hazards for given world size and type ###    
-        hazard_csvname = 'demo_datasets/RL_datasets/' + args["world_size"] + '_' + args["world_type"] + '_hazards.csv'
+        hazard_csvname = '../../../demo_datasets/RL_datasets/' + args["world_size"] + '_' + args["world_type"] + '_hazards.csv'
 
         # load in preset hazard locations from csv
         self.hazards = pd.read_csv(hazard_csvname,header = None)

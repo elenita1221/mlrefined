@@ -129,7 +129,7 @@ class learner():
             states_print.append(t)
             
         df = pd.DataFrame(self.Q,columns=['up','down','left','right'], index=states_print)
-        df.to_csv('demo_datasets/RL_datasets/Q_' + self.grid.world_size + '_' + self.grid.world_type + '_' +  self.action_method + '_actions_.csv')
+        df.to_csv('../../../demo_datasets/RL_datasets/Q_' + self.grid.world_size + '_' + self.grid.world_type + '_' +  self.action_method + '_actions_.csv')
        
     ### run validation episodes ###
     def validate(self,Q):

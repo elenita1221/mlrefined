@@ -172,21 +172,21 @@ JS_INCLUDE = """
 
       switch(mode){
           case 'reverse':
-              document.getElementById("reverse-button"+id).src = "./demo_python_backend_files/JSAnimation/icons/reverse-filled.png";
-              document.getElementById("pause-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/pause.png";
-              document.getElementById("play-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/play.png";
+              document.getElementById("reverse-button"+id).src = "../../../demo_python_backend_files/JSAnimation/icons/reverse-filled.png";
+              document.getElementById("pause-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/pause.png";
+              document.getElementById("play-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/play.png";
               break;
             
           case 'pause':   
-              document.getElementById("reverse-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/reverse.png";
-              document.getElementById("pause-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/pause-filled.png";
-              document.getElementById("play-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/play.png";
+              document.getElementById("reverse-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/reverse.png";
+              document.getElementById("pause-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/pause-filled.png";
+              document.getElementById("play-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/play.png";
               break;
             
            case 'play': 
-               document.getElementById("reverse-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/reverse.png";
-               document.getElementById("pause-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/pause.png";
-               document.getElementById("play-button"+id).src =  "./demo_python_backend_files/JSAnimation/icons/play-filled.png";
+               document.getElementById("reverse-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/reverse.png";
+               document.getElementById("pause-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/pause.png";
+               document.getElementById("play-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/play-filled.png";
                break;
            }
       }
@@ -215,7 +215,7 @@ JS_INCLUDE = """
 
 DISPLAY_TEMPLATE = """ 
 
-<link rel="stylesheet" type="text/css" href="./demo_python_backend_files/JSAnimation/icons/mystyle.css">
+<link rel="stylesheet" type="text/css" href="../../../demo_python_backend_files/JSAnimation/icons/mystyle.css">
 
 <div class="animation" align="center">
     
