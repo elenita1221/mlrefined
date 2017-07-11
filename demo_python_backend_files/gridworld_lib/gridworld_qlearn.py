@@ -37,13 +37,13 @@ class learner():
             self.training_episodes = args['training_episodes']
             # return error if number of training episodes is too big
         if self.training_episodes > self.grid.training_episodes:
-            print 'requesting too many training episodes, the maximum num = ' + str(self.grid.training_episodes)
+            print ('requesting too many training episodes, the maximum num = ' + str(self.grid.training_episodes))
             return        
         if 'validation_episodes' in args:
             self.validation_episodes = args['validation_episodes']
             # return error if number of training episodes is too big
         if self.validation_episodes > self.grid.validation_episodes:
-            print 'requesting too many validation episodes, the maximum num = ' + str(self.grid.validation_episodes)
+            print ('requesting too many validation episodes, the maximum num = ' + str(self.grid.validation_episodes))
             return 
         
         # make local (non-deep) copies of globals for easier reading
@@ -99,7 +99,7 @@ class learner():
             if 'verbose' in args:
                 if args['verbose'] == True:
                     if np.mod(n+1,50) == 0:
-                        print 'training episode ' + str(n+1) +  ' of ' + str(self.training_episodes) + ' complete'
+                        print ('training episode ' + str(n+1) +  ' of ' + str(self.training_episodes) + ' complete')
             
             ### store this episode's computation time and training reward history
             stop = time.clock()
@@ -118,7 +118,7 @@ class learner():
         # save Q function 
         self.save_qmat()
             
-        print 'q-learning algorithm complete'
+        print ('q-learning algorithm complete')
         
     ### save Q matrix ###
     def save_qmat(self):

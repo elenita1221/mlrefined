@@ -40,11 +40,11 @@ class environment():
         # setup world
         world_name = ''
         if "world_size" not in args:
-            print 'world_size parameter required, choose either small or large'
+            print ('world_size parameter required, choose either small or large')
             return
         
         if "world_type" not in args:
-            print 'world_type parameter required, choose maze, random, or moat'
+            print ('world_type parameter required, choose maze, random, or moat')
 
         ### set world size ###    
         if args["world_size"] == 'small':

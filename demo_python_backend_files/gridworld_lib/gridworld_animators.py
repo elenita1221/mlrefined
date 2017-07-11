@@ -37,7 +37,7 @@ class animator():
             axs = np.array(axs)
         
         ### produce validation runs ###
-        print 'animating run...'
+        print ('animating run...')
         validation_run_history = []
         for i in range(len(starting_locs)):
             # take random starting point - for short just from validation schedule
@@ -107,7 +107,7 @@ class animator():
         # set frames per second in animation
         IPython_display.anim_to_html(anim,fps = min(100,max_len)/float(10))
         
-        print '...done!'
+        print ('...done!')
         time.sleep(1)
         clear_output()
         
@@ -142,7 +142,7 @@ class animator():
         max_len = max(L1,L2)
         
         # loop over the episode histories and plot the results
-        print 'animating run...'
+        print ('animating run...')
         rewards =  np.zeros((2,1))
         def show_episode(step):
             # loop over subplots and plot current step of each episode history
@@ -179,7 +179,7 @@ class animator():
         # set frames per second in animation
         IPython_display.anim_to_html(anim,fps = min(100,max_len)/float(10))
     
-        print '...done!'
+        print ('...done!')
         time.sleep(1)
         clear_output()
         
@@ -215,7 +215,7 @@ class animator():
                 max_len = l
 
         # loop over the episode histories and plot the results
-        print 'animating run...'
+        print ('animating run...')
         def show_episode(step):
             # loop over subplots and plot current step of each episode history
             artist = fig
@@ -246,7 +246,7 @@ class animator():
         # set frames per second in animation
         IPython_display.anim_to_html(anim,fps = min(100,max_len)/float(10))
         
-        print '...done!'
+        print ('...done!')
         time.sleep(1)
         clear_output()
         
