@@ -2,7 +2,7 @@
 
 See our [blog here](https://jermwatt.github.io/mlrefined/index.html) for interactive versions of many of the notebooks in this repo. 
 
-A minimal number of Python libraries are required for running the demonstration notebooks this repo.  These are: numpy, pandas, matplotlib, and [autograd](https://github.com/HIPS/autograd).  You can install all of them by pulling the repo and pip installing the provided requirements.txt file as follows
+Python 3 and a minimal number of Python libraries are required for running the demonstration notebooks this repo.  These are: numpy, pandas, matplotlib, and [autograd](https://github.com/HIPS/autograd).  You can install all of them by pulling the repo and pip installing the provided requirements.txt file as follows
 
       git clone https://github.com/jermwatt/mlrefined
       cd mlrefined
