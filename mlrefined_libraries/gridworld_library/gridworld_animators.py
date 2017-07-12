@@ -1,13 +1,9 @@
 import numpy as np
 
-#from JSAnimation import IPython_display
-
-import sys
-#sys.path.append('../../')
-from JSAnimation_slider_only import IPython_display_slider_only
+from mlrefined_libraries import JSAnimation
 
 import time
-#from IPython.display import clear_output
+
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.colors import LinearSegmentedColormap
