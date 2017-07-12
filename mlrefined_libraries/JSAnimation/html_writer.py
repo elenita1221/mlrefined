@@ -172,50 +172,31 @@ JS_INCLUDE = """
 
       switch(mode){
           case 'reverse':
-              document.getElementById("reverse-button"+id).src = "../../../demo_python_backend_files/JSAnimation/icons/reverse-filled.png";
-              document.getElementById("pause-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/pause.png";
-              document.getElementById("play-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/play.png";
+              document.getElementById("reverse-button"+id).src = "../../mlrefined_libraries/JSAnimation/icons/reverse-filled.png";
+              document.getElementById("pause-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/pause.png";
+              document.getElementById("play-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/play.png";
               break;
             
           case 'pause':   
-              document.getElementById("reverse-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/reverse.png";
-              document.getElementById("pause-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/pause-filled.png";
-              document.getElementById("play-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/play.png";
+              document.getElementById("reverse-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/reverse.png";
+              document.getElementById("pause-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/pause-filled.png";
+              document.getElementById("play-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/play.png";
               break;
             
            case 'play': 
-               document.getElementById("reverse-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/reverse.png";
-               document.getElementById("pause-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/pause.png";
-               document.getElementById("play-button"+id).src =  "../../../demo_python_backend_files/JSAnimation/icons/play-filled.png";
+               document.getElementById("reverse-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/reverse.png";
+               document.getElementById("pause-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/pause.png";
+               document.getElementById("play-button"+id).src =  "../../mlrefined_libraries/JSAnimation/icons/play-filled.png";
                break;
            }
       }
   
 </script>
 """
-    
-    
-### removed button images from below
-# <button onclick="anim{id}.first_frame()"><img class="anim_icon" src="{icons.first}"></button>
-# <button onclick="anim{id}.previous_frame()"><img class="anim_icon" src="{icons.prev}"></button>
-
-# <button onclick="anim{id}.next_frame()"><img class="anim_icon" src="{icons.next}"></button>
-# <button onclick="anim{id}.last_frame()"><img class="anim_icon" src="{icons.last}"></button>
-    
-# <button onclick="anim{id}.slower()">&#8211;</button>
-# <button onclick="anim{id}.faster()">+</button>
-
-
-#  <form action="#n" name="_anim_loop_select{id}" class="anim_control">
-#    <input type="radio" name="state" value="once" {once_checked}> Once </input>
-#    <input type="radio" name="state" value="loop" {loop_checked}> Loop </input>
-#    <input type="radio" name="state" value="reflect" {reflect_checked}> Reflect </input>
-#  </form>
-
 
 DISPLAY_TEMPLATE = """ 
 
-<link rel="stylesheet" type="text/css" href="../../../demo_python_backend_files/JSAnimation/icons/mystyle.css">
+<link rel="stylesheet" type="text/css" href="../../mlrefined_libraries/JSAnimation/icons/mystyle.css">
 
 <div class="animation" align="center">
     

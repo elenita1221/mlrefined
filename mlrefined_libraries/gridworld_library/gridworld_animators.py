@@ -1,7 +1,5 @@
 import numpy as np
-
-from mlrefined_libraries import JSAnimation
-
+from mlrefined_libraries.JSAnimation import IPython_display
 import time
 
 import matplotlib.pyplot as plt
@@ -9,6 +7,7 @@ import matplotlib.animation as animation
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.patches as patches
 from matplotlib.collections import LineCollection
+from IPython.display import clear_output
 
 import matplotlib.lines as mlines
 from mpl_toolkits.mplot3d import Axes3D
@@ -31,11 +30,12 @@ class animator():
         if grid.width:
             fsize = 5
         fig = plt.figure(figsize = (12,fsize))
+        artist = fig
         axs = []
         for i in range(len(starting_locs)):
             ax = fig.add_subplot(1,len(starting_locs),i+1,aspect = 'equal')
             axs.append(ax)
-        
+
         # only one added subplot, axs must be in array format
         if len(starting_locs) == 1:
             axs = np.array(axs)
@@ -78,14 +78,13 @@ class animator():
             l = len(validation_run_history[i])
             if l > max_len:
                 max_len = l
-        
+
         ### loop over the episode histories and plot the results ###
         def show_episode(step):
             # loop over subplots and plot current step of each episode history
-            artist = fig
-
             for k in range(len(axs)):
                 ax = axs[k]
+                ax.cla()
 
                 # take correct episode
                 current_episode = validation_run_history[k]
@@ -101,7 +100,7 @@ class animator():
                     grid.color_gridworld(ax = ax,lights=args['lights'])
                     
                 ax.set_title('fully trained run ' + str(k + 1))
-                # fig.subplots_adjust(left=0,right=1,bottom=0,top=1)  ## gets rid of the white space around image
+                fig.subplots_adjust(left=0,right=1,bottom=0,top=1)  ## gets rid of the white space around image
 
             return artist,
         
@@ -112,7 +111,7 @@ class animator():
         IPython_display.anim_to_html(anim,fps = min(100,max_len)/float(10))
         
         print ('...done!')
-        time.sleep(1)
+        time.sleep(0.5)
         clear_output()
         
         return(anim)
@@ -183,10 +182,9 @@ class animator():
         # set frames per second in animation
         IPython_display.anim_to_html(anim,fps = min(100,max_len)/float(10))
     
-        print ('...done!')
-        time.sleep(1)
+        print ('...done!') 
+        time.sleep(0.5)
         clear_output()
-        
         return(anim)
     
     ### animate training episode from one version of q-learning ###
@@ -251,9 +249,8 @@ class animator():
         IPython_display.anim_to_html(anim,fps = min(100,max_len)/float(10))
         
         print ('...done!')
-        time.sleep(1)
+        time.sleep(0.5)
         clear_output()
-        
         return(anim)
 
     ############### draw arrow map after training ###############

@@ -36,12 +36,12 @@ class environment():
         self.world_type = ''
         
         # setup standard reward value
-        self.hazard_reward = -1 
+        self.standard_reward = -0.001
         if 'standard_reward' in args:
             self.standard_reward = args['standard_reward'] 
             
         # setup hazard reward value
-        self.hazard_reward = -200 
+        self.hazard_reward = -1 
         if 'hazard_reward' in args:
             self.hazard_reward = args['hazard_reward'] 
         
@@ -180,8 +180,7 @@ class environment():
         # clean up plot
         ax.axis('off')
         ax.set_xlim(-0.1,self.width);
-        ax.set_ylim(-0.1,self.height);  
-
+        ax.set_ylim(-0.1,self.height);
  
     ### create starting schedule - starting position of each episode of training or testing ###
     def make_start_schedule(self,**args):
