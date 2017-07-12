@@ -1,16 +1,7 @@
 name: mlrefined-env
 
 dependencies:
-  - python=2.7
-  - scikit-learn
-  - opencv
-  - pil
+  - python=3.5
   - numpy
-  - toolz
   - matplotlib
-  - dill
   - pandas
-  - partd
-  - bokeh
-  - pip:
-    - git+https://github.com/blaze/dask.git#egg=dask[complete]
